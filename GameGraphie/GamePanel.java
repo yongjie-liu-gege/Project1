@@ -41,7 +41,6 @@ public class GamePanel extends JPanel implements MouseListener{
     Boolean Ouvre=false;
     //index de joueur
     int aqui;
-
     private int q, w;
     //Initialiser la liste des joueurs
     List<Joueur> Joueurs = new ArrayList<Joueur>();
@@ -96,7 +95,7 @@ public class GamePanel extends JPanel implements MouseListener{
     @Override
     public void paint(Graphics g) {
         super.paint(g);
-        //Dessinez un arrière-plan
+    //Dessinez un arrière-plan
         g.drawImage(pg, 0, 0, null);
         //Initialiser un objet aléatoire
         Random cd = new Random();
@@ -275,7 +274,7 @@ public class GamePanel extends JPanel implements MouseListener{
         g.setFont(new Font("TimesRoman", Font.PLAIN, fontSize));
         for (int i = 0; i < Joueurs.size(); i++) {
             if(Joueurs.get(i).getCapacite==0) {
-                g.drawString("Batman est J0 .", 350, 20);
+                g.drawString("Batman est Ingenieur .", 350, 20);
                 g.drawString("BatmanCleTerre :" + Joueurs.get(i).gagneTerreCle, 350, 140);
                 g.drawString("BatmanCleEau :" + Joueurs.get(i).gagneEauCle, 350, 50);
                 g.drawString("BatmanCleFeu :" + Joueurs.get(i).gagneFeuCle, 350, 80);
@@ -290,7 +289,7 @@ public class GamePanel extends JPanel implements MouseListener{
         g.setFont(new Font("TimesRoman", Font.PLAIN, fontSize));
         for (int i = 0; i < Joueurs.size(); i++) {
             if(Joueurs.get(i).getCapacite==1) {
-                g.drawString("CaptainAmerica est J1 .", 650, 20);
+                g.drawString("CaptainAmerica est Explorateur .", 650, 20);
                 g.drawString("CaptainAmericaCleTerre :" + Joueurs.get(i).gagneTerreCle, 650, 140);
                 g.drawString("CaptainAmericaCleEau :" + Joueurs.get(i).gagneEauCle, 650, 50);
                 g.drawString("CaptainAmericaCleFeu :" + Joueurs.get(i).gagneFeuCle, 650, 80);
@@ -303,7 +302,7 @@ public class GamePanel extends JPanel implements MouseListener{
         g.setFont(new Font("TimesRoman", Font.PLAIN, fontSize));
         for (int i = 0; i < Joueurs.size(); i++) {
             if(Joueurs.get(i).getCapacite==2) {
-                g.drawString("TitanVert est J2 .", 200, 20);
+                g.drawString("TitanVert est Navigateur .", 200, 20);
                 g.drawString("TitanVertCleTerre :" + Joueurs.get(i).gagneTerreCle, 200, 140);
                 g.drawString("TitanVertCleEau :" + Joueurs.get(i).gagneEauCle, 200, 50);
                 g.drawString("TitanVertCleFeu :" + Joueurs.get(i).gagneFeuCle, 200, 80);
@@ -316,7 +315,7 @@ public class GamePanel extends JPanel implements MouseListener{
         g.setFont(new Font("TimesRoman", Font.PLAIN, fontSize));
         for (int i = 0; i < Joueurs.size(); i++) {
             if(Joueurs.get(i).getCapacite==3) {
-                g.drawString("Supermen est J3 .", 500, 20);
+                g.drawString("Supermen est Plongeur .", 500, 20);
                 g.drawString("SupermenCleTerre :" + Joueurs.get(i).gagneTerreCle, 500, 140);
                 g.drawString("SupermenCleEau :" + Joueurs.get(i).gagneEauCle, 500, 50);
                 g.drawString("SupermenCleFeu :" + Joueurs.get(i).gagneFeuCle, 500, 80);
@@ -329,7 +328,7 @@ public class GamePanel extends JPanel implements MouseListener{
         g.setFont(new Font("TimesRoman", Font.PLAIN, fontSize));
         for (int i = 0; i < Joueurs.size(); i++) {
             if(Joueurs.get(i).getCapacite==4) {
-                g.drawString("Tyran est J4 .", 10, 20);
+                g.drawString("Tyran est Messager .", 10, 20);
                 g.drawString("TyranTerre :" + Joueurs.get(i).gagneTerreCle, 10, 140);
                 g.drawString("TyranCleEau :" + Joueurs.get(i).gagneEauCle, 10, 50);
                 g.drawString("TyranCleFeu :" + Joueurs.get(i).gagneFeuCle, 10, 80);
@@ -347,10 +346,42 @@ public class GamePanel extends JPanel implements MouseListener{
             g.drawImage(joueur.img, joueur.x, joueur.y, joueur.w, joueur.h, null);
         }
         //donner les cles, ici on n'a pas utilise JButton donc il faut clic cette place
-        g.setColor(Color.RED);
+        g.setColor(Color.red);
         g.setFont(new Font("TimesRoman", Font.PLAIN, fontSize));
-        g.drawString("DonneCle", 750, 610);
-        g.drawRect(740, 590, 80, 30);
+        g.drawString("DonneCle", 750, 300);
+        g.drawRect(740, 280, 80, 30);
+
+
+        g.setColor(Color.GREEN);
+        g.setFont(new Font("TimesRoman", Font.PLAIN, fontSize));
+        for (int i = 0; i < Joueurs.size(); i++) {
+            Joueur joueur = Joueurs.get(i);
+            if(Joueurs.get(i).joueurPlace[Joueurs.get(i).i][Joueurs.get(i).j]==0 && Joueurs.get(i).Atoi){
+                g.drawString("Clic sois-meme", 10, 330);
+                if(Joueurs.get(i).getCapacite==0) {
+                    g.drawString("Votre Capacite est:", 10, 250);
+                    g.drawString("assecher deux zones", 10, 280);
+                    if(Joueurs.get(i).restcapaciteIngenieur!=0) {
+                        g.drawString("clic-droit sur l'eau pour " +"\n"+"utiliser capacite", 10, 310);
+                    }
+                }else if(Joueurs.get(i).getCapacite==1){
+                    g.drawString("Votre Capacite est:", 10, 250);
+                    g.drawString("se deplacer et assecher diagonalement", 10, 280);
+                }else if(Joueurs.get(i).getCapacite==2){
+                    g.drawString("Votre Capacite est: ", 10, 250);
+                    g.drawString("peut deplacer un autre joueur", 10, 280);
+                }else if(Joueurs.get(i).getCapacite==3){
+                    g.drawString("Votre Capacite est: ", 10, 250);
+                    g.drawString("peut traverser une zone submerge", 10, 280);
+                }else if(Joueurs.get(i).getCapacite==4){
+                    g.drawString("Votre Capacite est: ", 10, 250);
+                    g.drawString("peut donner une cle", 10, 280);
+                }
+            }else if(Joueurs.get(i).joueurPlace[Joueurs.get(i).i][Joueurs.get(i).j]==1&& Joueurs.get(i).Atoi){
+                g.drawString("pls choisiez une zone pour", 10, 310);
+                g.drawString("se deplacer ou assecher ", 10, 330);
+            }
+        }
 
     }
 
@@ -449,31 +480,6 @@ public class GamePanel extends JPanel implements MouseListener{
 
                         //action de joueur navigateur
                         Joueurs.get(l).action(e.getX(), e.getY());
-                        if (e.getX() >= 740 && e.getX() <= 820 && e.getY() >= 590 && e.getY() <= 620) {
-                            for (int h = 0; h < Joueurs.size(); h++) {//Si quelqu'un a le meme cle,Messager lui donne la cle.
-                                if (Joueurs.get(h).gagneTerreCle == 1 && Joueurs.get(l).gagneTerreCle == 1
-                                        &&h!=l &&Joueurs.get(h).x==Joueurs.get(l).x &&Joueurs.get(h).y==Joueurs.get(l).y) {
-                                    Joueurs.get(h).gagneTerreCle++;
-                                    Joueurs.get(l).gagneTerreCle--;
-                                    Joueurs.get(l).restAction--;
-                                } else if (Joueurs.get(h).gagneAirCle == 1 && Joueurs.get(l).gagneAirCle == 1
-                                        &&h!=l &&Joueurs.get(h).x==Joueurs.get(l).x &&Joueurs.get(h).y==Joueurs.get(l).y) {
-                                    Joueurs.get(h).gagneAirCle++;
-                                    Joueurs.get(l).gagneAirCle--;
-                                    Joueurs.get(l).restAction--;
-                                } else if (Joueurs.get(h).gagneEauCle == 1 && Joueurs.get(l).gagneEauCle == 1
-                                        &&h!=l &&Joueurs.get(h).x==Joueurs.get(l).x &&Joueurs.get(h).y==Joueurs.get(l).y) {
-                                    Joueurs.get(h).gagneEauCle++;
-                                    Joueurs.get(l).gagneEauCle--;
-                                    Joueurs.get(l).restAction--;
-                                } else if (Joueurs.get(h).gagneFeuCle == 1 && Joueurs.get(l).gagneFeuCle == 1
-                                        &&h!=l &&Joueurs.get(h).x==Joueurs.get(l).x &&Joueurs.get(h).y==Joueurs.get(l).y) {
-                                    Joueurs.get(h).gagneFeuCle++;
-                                    Joueurs.get(l).gagneFeuCle--;
-                                    Joueurs.get(l).restAction--;
-                                }
-                            }
-                        }
                         for (int h = 0; h < Joueurs.size(); h++) {
                             if(h!=l &&Joueurs.get(h).x!=Joueurs.get(l).x&&Joueurs.get(h).y!=Joueurs.get(l).y
                                     &&mouseplaceX==Joueurs.get(h).i&&mouseplaceY==Joueurs.get(h).j
@@ -507,7 +513,6 @@ public class GamePanel extends JPanel implements MouseListener{
                     }else if(Joueurs.get(l).restAction > 0 && Joueurs.get(l).Atoi  &&Joueurs.get(l).getCapacite==4) {
                         //action de joueur Messager
                         Joueurs.get(l).action(e.getX(), e.getY());
-                        System.out.print("bababababbababa");
                         if (Joueurs.get(l).restAction == 0 && l <= Joueurs.size() - 2) {
                             Joueurs.get(l + 1).Atoi = true;
                             Joueurs.get(l).Atoi = false;
@@ -518,7 +523,6 @@ public class GamePanel extends JPanel implements MouseListener{
                             carteID[Joueurs.get(l).k][Joueurs.get(l).m] = 1;
                             niveauEAU[Joueurs.get(l).k][Joueurs.get(l).m]--;
                             Joueurs.get(l).restAction--;
-                            System.out.println(Joueurs.get(l).restAction + "fois");
                             if (Joueurs.get(l).restAction == 0 && l <= Joueurs.size() - 2) {
                                 Joueurs.get(l + 1).Atoi = true;
                                 Joueurs.get(l).Atoi = false;
@@ -531,7 +535,7 @@ public class GamePanel extends JPanel implements MouseListener{
                     }
                 }
                 repaint();
-            }else if(e.getX() >= 740 && e.getX() <= 820 && e.getY() >= 590 && e.getY() <= 620){
+            }else if(e.getX() >= 740 && e.getX() <= 820 && e.getY() >= 280 && e.getY() <= 310){
 
                 //recuperer les cles
                 for (int l = 0; l < Joueurs.size(); l++) {
@@ -570,7 +574,6 @@ public class GamePanel extends JPanel implements MouseListener{
                             carteID[Joueurs.get(l).k][Joueurs.get(l).m] = 1;
                             niveauEAU[Joueurs.get(l).k][Joueurs.get(l).m]--;
                             Joueurs.get(l).restAction--;
-                            System.out.println(Joueurs.get(l).restAction + "fois");
                             if (Joueurs.get(l).restAction == 0 && l <= Joueurs.size() - 2) {
                                 Joueurs.get(l + 1).Atoi = true;
                                 Joueurs.get(l).Atoi = false;
@@ -585,19 +588,22 @@ public class GamePanel extends JPanel implements MouseListener{
                 for (int l = 0; l < Joueurs.size(); l++) {
                     if (Joueurs.get(l).restAction > 0 && Joueurs.get(l).Atoi && Joueurs.get(l).getCapacite == 4) {//joueur Messager
                         for (int h = 0; h < Joueurs.size(); h++) {//Si quelqu'un a le meme cle,Messager lui donne la cle.
-                            System.out.print("woaini");
                             if (Joueurs.get(h).gagneTerreCle == 1 && Joueurs.get(l).gagneTerreCle == 1) {
                                 Joueurs.get(h).gagneTerreCle++;
                                 Joueurs.get(l).gagneTerreCle--;
+                                Joueurs.get(l).restAction--;
                             } else if (Joueurs.get(h).gagneAirCle == 1 && Joueurs.get(l).gagneAirCle == 1) {
                                 Joueurs.get(h).gagneAirCle++;
                                 Joueurs.get(l).gagneAirCle--;
+                                Joueurs.get(l).restAction--;
                             } else if (Joueurs.get(h).gagneEauCle == 1 && Joueurs.get(l).gagneEauCle == 1) {
                                 Joueurs.get(h).gagneEauCle++;
                                 Joueurs.get(l).gagneEauCle--;
+                                Joueurs.get(l).restAction--;
                             } else if (Joueurs.get(h).gagneFeuCle == 1 && Joueurs.get(l).gagneFeuCle == 1) {
                                 Joueurs.get(h).gagneFeuCle++;
                                 Joueurs.get(l).gagneFeuCle--;
+                                Joueurs.get(l).restAction--;
                             }
                         }
                         if (Joueurs.get(l).restAction == 0 && l <= Joueurs.size() - 2) {
@@ -610,7 +616,6 @@ public class GamePanel extends JPanel implements MouseListener{
                             carteID[Joueurs.get(l).k][Joueurs.get(l).m] = 1;
                             niveauEAU[Joueurs.get(l).k][Joueurs.get(l).m]--;
                             Joueurs.get(l).restAction--;
-                            System.out.println(Joueurs.get(l).restAction + "fois");
                             if (Joueurs.get(l).restAction == 0 && l <= Joueurs.size() - 2) {
                                 Joueurs.get(l + 1).Atoi = true;
                                 Joueurs.get(l).Atoi = false;
@@ -623,13 +628,6 @@ public class GamePanel extends JPanel implements MouseListener{
                     }repaint();
                 }
             }
-
-
-
-
-
-
-
         } else if (c == MouseEvent.BUTTON3) {//Joueur ingenieur;
             for (int l = 0; l < Joueurs.size(); l++) {
                 if (Joueurs.get(l).getCapacite == 0 && Joueurs.get(l).restcapaciteIngenieur!=0 && Joueurs.get(l).Atoi) {
@@ -669,4 +667,5 @@ public class GamePanel extends JPanel implements MouseListener{
     //set
     void setQ(int i){this.q=i;}
     void setW(int i){this.w=i;}
+
     }
