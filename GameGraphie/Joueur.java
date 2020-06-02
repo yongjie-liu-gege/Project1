@@ -81,7 +81,8 @@ public class Joueur{
         if(Math.abs(Ex-(x+50))<50&& Math.abs(Ey-(y+40))<40&&joueurPlace[i][j] == 0) {//clic soit-meme,pour fixer,donc il faux clic deux fois pour se deplacer.
             joueurPlace[i][j] = 1;
             System.out.println( "pls choisiez une zone pour se deplacer ou assecher");
-        }else if (Math.abs(Ex-(x+50))<150&& Math.abs(Ey-(y+40))<120 && joueurPlace[i][j] == 1){//une action pour se deplacer
+        }else if ( Math.abs(Ex-(x+50))>50&&Math.abs(Ex-(x+50))<150&& Math.abs(Ey-(y+40))<40 && joueurPlace[i][j] == 1
+                ||Math.abs(Ex-(x+50))<50 && Math.abs(Ey-(y+40))<120 &&Math.abs(Ey-(y+40))>40&& joueurPlace[i][j] == 1 ){//une action pour se deplacer
             joueurPlace[i][j]=0;
             this.x=Ex;
             this.y=Ey;
@@ -98,7 +99,8 @@ public class Joueur{
             this.m=(f-200)/80;
             this.enleverEau=true;
             joueurPlace[i][j]=0;
-        }else if(Math.abs(Ex-(x+50))>=50&& Math.abs(Ey-(y+40))>=40&& Math.abs(Ex-(x+50))<150&&Math.abs(Ey-(y+40))<120 && joueurPlace[i][j] == 0 ){
+        }else if(Math.abs(Ex-(x+50))<150&& Math.abs(Ey-(y+40))<40 && joueurPlace[i][j] == 0
+                ||Math.abs(Ex-(x+50))<50 && Math.abs(Ey-(y+40))<120 && joueurPlace[i][j] == 0 ){
             //assecher l'eau losqu'il eau est en gauche ou A droit ou en haut ou en bas
             this.d=Ex;
             this.f=Ey;
